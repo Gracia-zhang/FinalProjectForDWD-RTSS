@@ -1,0 +1,428 @@
+body {
+  background-color: #FFEA79;
+  }
+
+#banner{
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+
+  background: #FFD282;
+  box-shadow: 0px 4px 7px rgba(132, 74, 74, 0.3);
+  border-radius: 0px 0px 30px 30px;
+}
+#logo{
+  position: relative;
+  width: 194px;
+  height: 38px;
+  left: 25px;
+  top: 22px;
+}
+#yourTele{
+  position: absolute;
+  width: 150px;
+  height: 28px;
+  left: 30px;
+  top: 12%;
+}
+#theme{
+  position: absolute;
+  width: 105px;
+  height: 28px;
+  right: 30px;
+  top: 12%;
+
+}
+#skinBox{
+  position: absolute;
+  width: 30%;
+  height: 25%;
+  left: -37px;
+  top: 17%;
+
+  background: #FFFFFF;
+  border: 10px solid #FFD282;
+  border-radius: 30px;
+  transition-duration: 0.4s;
+}
+.customize{
+  position:static;
+  width: 4vw;
+  height: 4vw;
+  left: 0px;
+  top: 7vh;
+
+  margin-top: 6vh;
+  margin-left: 4vw;
+  margin-right: -2vw;
+  margin-bottom: -1vw;
+
+  box-sizing: border-box;
+  border-radius: 20px;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.customize:hover{
+  border: 10px solid #7F382E;
+}
+.light{
+  background: #F0F5F6;
+  border: 10px solid #9EC0C7;
+}
+
+.dark{
+  background: #747474;
+  border: 10px solid #131313;
+}
+.pink{
+  background: #FFDBE3;
+  border: 10px solid #BDB7FD;
+}
+.green{
+  background: #CBE3C2;
+  border: 10px solid #87A89C;
+}
+.yellow{
+  background: #FFE043;
+  border: 10px solid #9D7836;
+}
+.blue{
+  background: #85AAE7;
+  border: 10px solid #6177B6;
+}
+.white{
+  background: #FFFFFF;
+  border: 10px solid #594646;
+}
+.lightblue{
+  background: #C8DDFF;
+  border: 10px solid #5B6473;
+}
+.pinky{
+  background: #FFCCE8;
+  border: 10px solid #863D63;
+}
+.greeny{
+  background: #E1FFCA;
+  border: 10px solid #74925C;
+}
+#clothBox{
+  position: absolute;
+  width: 18vw;
+  height: 25%;
+  left: -37px;
+  top: 43%;
+
+  background: #FFFFFF;
+  border: 10px solid #94ECF8;
+  border-radius: 30px;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#headBox{
+  position: absolute;
+  width: 30vw;
+  height: 25%;
+  left: -37px;
+  top: 69%;
+
+  background: #FFFFFF;
+  border: 10px solid #CC94F8;
+  border-radius: 30px;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#text1{
+  position: relative;
+  width: auto;
+  height: 2vw; 
+  left: 60px;
+  top: 2vh;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#text2{
+  position: relative;
+  width: auto;
+  height: 2vw;
+  left: 60px;
+  top:2vh;
+
+  transition-duration: 0.4s;
+}
+.theme{
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  right: 43px;
+
+  box-sizing: border-box;
+  border-radius: 20px;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.y{
+  top: 185px;
+
+  background: #FFE979;
+  border: 10px solid #FFD282;
+}
+.y:hover{
+  background:#FFD282;
+}
+.b{
+  top: 290px;
+
+  background: #CAF8FF;
+  border: 10px solid #93EBF8;
+}
+.b:hover{
+  background: #93EBF8;
+}
+.p{
+  top: 395px;
+
+  background: #FFCCE8;
+  border: 10px solid #CB93F8;
+}
+.p:hover{
+  background: #CB93F8;
+}
+#circle{
+  position:absolute;
+  width: 100vh;
+  height: auto;
+  right: 15%;
+  bottom: 0px;
+}
+#TV{
+  position: fixed;
+  width: 25.2vw;
+  height:41.4vw;
+  right: 25%;
+  bottom: 0px;
+}
+#TVcloth{
+  position: absolute;
+  width: 100%;
+  height: auto;
+  right: 0px;
+  bottom: 0px;
+}
+
+.TVskin{
+  background: #F0F5F6;
+  border: 6px solid #9EC0C7;
+  box-sizing: border-box;
+}
+.neck{
+  position: absolute;
+  width: 12%;
+  height: 14%;
+  left: 43.5%;
+  top: 43%;
+}
+.right{
+  position: absolute;
+  width: 13.4%;
+  height: 18.85%;
+  right: 3%;
+  top: 81%;
+  transform: rotate(-5deg);
+}
+.left{
+  position: absolute;
+  width: 13.4%;
+  height: 18.85%;
+  left: 3%;
+  top: 81%;
+  transform: rotate(5deg);
+}
+.TVhead{
+  position: absolute;
+  width: 100%;
+  height: 43%;
+  right: -3%;
+  top: 2%;
+
+  background: #FFFFFF;
+  border: 8px solid #594646;
+  border-radius: 30px;
+}
+.TVface{
+  position: relative;
+  width: 76.5%;
+  height: 67.5%;
+  margin: auto;
+  top:13.8%;
+
+  background: #F0F5F7;
+  border: 6px solid #9EC0C7;
+  border-radius: 20px;
+}
+.eye{
+  position: absolute;
+  width: 7%;
+  height: 20%;
+  top: 40%;
+
+  background:#515151;
+}
+.lefteye{
+  left: 18%;
+}
+.righteye{
+  right: 20%;
+}
+#v{
+  position: absolute;
+  width: 16%;
+  height: auto;
+  left:40%;
+  top: 55%;
+
+}
+#next{
+  position: absolute;
+  width: 20%;
+  height: 13%;
+  right: 10%;
+  bottom: 5%;
+
+  background: #FFFFFF;
+  border: 10px solid #FFD282;
+  border-radius: 50px;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+#nextText{
+  position: relative;
+  width: 65%;
+  height: auto;
+}
+.rt{
+  position: absolute;
+  width: auto;
+  height: 30%;
+  top: 27px;
+
+  background-color:rgba(132, 74, 74, 0) ;
+  border: 0px;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.signup{
+  right: 150px;
+}
+.login{
+  right:50px;
+}
+#signupText{
+  position: relative;
+  width: auto;
+  height: 100%;
+}
+#loginText{
+  position: relative;
+  width: auto;
+  height: 100%;
+}
+#signUpBox{
+  position: relative;
+  width: 600px;
+  height: 70vh;
+  margin:auto;
+  margin-top: 15vh;
+
+  background-color: #FFFFFF;
+  border: 8px solid #594646;
+  border-radius: 50px;
+}
+#canvas-container{
+  position: relative;
+  width: 70vw;
+  height: 70vh;
+  margin:auto;
+  top: 20vh;
+
+  border: 8px solid #594646;
+  border-radius: 50px;
+}
+#TV-canvas{
+  position: fixed;
+  width: 15.12vw;
+  height:24.84vw;
+  left: 7%;
+  bottom: 0px;
+}
+#fname{
+  position:absolute;
+  width: auto;
+  height:auto;
+  top: 24%;
+  left: 100px;
+
+  font-size:xx-large;
+}
+#Id{
+  position:absolute;
+  width: 370px;
+  height:40px;
+  top: 30%;
+  left: 100px;
+
+  border:8px solid #594646 ;
+  border-radius: 15px;
+
+  font-size: x-large;
+}
+#pname{
+  position:absolute;
+  width: auto;
+  height:auto;
+  top: 44%;
+  left: 100px;
+
+  font-size:xx-large;
+}
+#Password{
+  position:absolute;
+  width: 370px;
+  height:40px;
+  top: 50%;
+  left: 100px;
+
+  border:8px solid #594646 ;
+  border-radius: 15px;
+
+  font-size: x-large;
+}
+.Button{
+  position:relative;
+  width: 200px;
+  height:50px;
+  top: 60%;
+  left:48%;
+
+  border:8px solid #594646 ;
+  border-radius: 15px;
+
+  font-size: x-large;
+  font: bolder;
+
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.Button:hover{
+  background-color: #FFD282;
+}
