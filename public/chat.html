@@ -23,7 +23,8 @@
         <link rel="stylesheet" href="style.css">
         
     </head>
-    <body onload="setupPage()">
+    <body >
+        
         <div id="canvas-container"></div>
         <div id = "TV-canvas" >
             <div class = "TVskin neck" id = "neck"></div>
@@ -33,24 +34,25 @@
                 <div class = "TVface" id ="face">
                     <div class = "eye lefteye" ></div>
                     <div class = "eye righteye"></div>
-                    <img id = "v" src ="asserts\v.png" alt ="v">
+                    <img id = "v" src ="assets\v.png" alt ="v">
                 </div>
             </div>
-            <img id = "TVcloth" src ="asserts\clothY.png" alt="clothes">
+            <img id = "TVcloth" src ="assets\clothY.png" alt="clothes">
         </div>
-        <img id = "theme" src="asserts\Theme.png" alt="theme">
+        <img id = "theme" src="assets\Theme.png" alt="theme">
         <button class = "theme y" type ="button" onclick="changeY()"></button>
         <button class = "theme b" type ="button" onclick="changeB()"></button>
         <button class = "theme p" type ="button" onclick="changeP()"></button>
         <span id = "banner">
-            <img id = "logo" src="asserts\TeleChat.png" alt="logo">
+            <img id = "logo" src="assets\TeleChat.png" alt="logo">
             <button class = "rt signup" type ="button" onclick="location.href='signup.html'">
-                <img id = "signupText" src="asserts\signUp.png" alt="signup">
+                <img id = "signupText" src="assets\signUp.png" alt="signup">
             </button>
             <button class = "rt login" type ="button" onclick="location.href='login.html'">
-                <img id = "loginText" src="asserts\login.png" alt="login">
+                <img id = "loginText" src="assets\login.png" alt="login">
             </button>
         </span>
+        <script src="theme.js"></script>
 
     </body>
 </html>

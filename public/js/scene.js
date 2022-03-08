@@ -13,8 +13,8 @@ class Scene {
     this.scene = new THREE.Scene();
 
     //Utility
-    this.width = window.innerWidth;
-    this.height = window.innerHeight * 0.9;
+    this.width = window.innerWidth*0.7;
+    this.height = window.innerHeight * 0.7;
     
 
     // lerp value to be used when interpolating positions and rotations
@@ -145,8 +145,8 @@ class Scene {
   // Clients 👫
 
   // add a client meshes, a video element and  canvas for three.js video texture
-  addClient(id) {
-    let videoMaterial = makeVideoMaterial(id);
+  addClient(id) {//put models inside
+    let videoMaterial = makeVideoMaterial(id);//video material
     let otherMat = new THREE.MeshNormalMaterial();
 
     let head1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), [otherMat,otherMat,otherMat,otherMat,otherMat,videoMaterial]);
@@ -288,8 +288,9 @@ class Scene {
   // Event Handlers 🍽
 
   onWindowResize(e) {
-    this.width = window.innerWidth;
-    this.height = Math.floor(window.innerHeight * 0.9);
+    this.width = window.innerWidth*0.7;
+    this.height = Math.floor(window.innerHeight * 0.7);
+    console.log(window.innerWidth,window.innerHeight);
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(this.width, this.height);

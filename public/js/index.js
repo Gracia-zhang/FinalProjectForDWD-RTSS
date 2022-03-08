@@ -60,7 +60,8 @@ window.onload = async () => {
   setInterval(function () {
     mySocket.emit("move", myScene.getPlayerPosition());
   }, 200);
-
+  
+  useData();
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -247,7 +248,7 @@ function createLocalVideoElement() {
   videoElement.autoplay = true;
   videoElement.width = videoWidth;
   videoElement.height = videoHeight;
-  // videoElement.style = "visibility: hidden;";
+  videoElement.style = "visibility: hidden;";
 
   if (localMediaStream) {
     let videoStream = new MediaStream([localMediaStream.getVideoTracks()[0]]);
