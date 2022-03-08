@@ -356,7 +356,7 @@ body {
   top: 20vh;
 
   border: 8px solid #594646;
-  border-radius: 50px;
+  border-radius: 0px;
 }
 #TV-canvas{
   position: fixed;
