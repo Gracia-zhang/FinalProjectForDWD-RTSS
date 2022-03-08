@@ -1,10 +1,3 @@
-let setting ={
-    theme:{background:'#FFE979',banner:'#FFD282'},
-    skin:{background:'#F0F5F6',border:'#9EC0C7'},
-    cloth:"assets/clothY.png",
-    headwear:{background:'#FFFFFF',border:'#594646'}
-};
-
 function saveData(){
     
     localStorage.setItem("tBackground",document.body.style.backgroundColor);
