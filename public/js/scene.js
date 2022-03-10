@@ -84,7 +84,7 @@ class Scene {
   //model
   addModel(colorSetting){
     let clothColor;
-    if(colorSetting.cloth = 'assets/clothY.png'){
+    if(colorSetting.cloth == 'assets/clothY.png'){
       clothColor = '#FFE043'
     }else{
       clothColor = '#85AAE7'
@@ -180,7 +180,7 @@ class Scene {
       head.traverse((o) => {
             if (o.isMesh) {
                 o.material = new THREE.MeshBasicMaterial();
-               // o.material.color.set(headColor);
+                //o.material.color.set(headColor);
             }
         });
         head.rotation.set(0,1.57,0);
