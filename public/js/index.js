@@ -106,14 +106,14 @@ function initSocketConnection() {
 
   //On connection server sends the client his ID and a list of all keys
   mySocket.on("introduction", (otherClientIds,color) => {
-    console.log(otherClientIds);
-    console.log(color);
+
     // for each existing user, add them as a client and add tracks to their peer connection
     for (let i = 0; i < otherClientIds.length; i++) {
       if (otherClientIds[i] != mySocket.id) {
         let theirId = otherClientIds[i];
         let theirColor = color[theirId];
-        console.log(theirColor);
+        let theirHead = color[theirId].head;
+        let theirFace = color[theirId].skin;
 
         console.log("Adding client with id " + theirId);
         peers[theirId] = {};
@@ -124,7 +124,7 @@ function initSocketConnection() {
         createClientMediaElements(theirId);
 
         myScene.addModel(theirColor);
-        myScene.addClient(theirId,theirColor);
+        myScene.addClient(theirId,theirHead,theirFace);
 
       }
     }

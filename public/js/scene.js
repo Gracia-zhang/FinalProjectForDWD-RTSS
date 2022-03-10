@@ -155,7 +155,7 @@ class Scene {
   // Clients 👫
 
   // add a client meshes, a video element and  canvas for three.js video texture
-  addClient(id,colorSetting) {//put models inside
+  addClient(id,headColor,faceColor) {//put models inside
     // let videoMaterial = makeVideoMaterial(id);//video material
     // let otherMat = new THREE.MeshNormalMaterial();
 
@@ -166,30 +166,37 @@ class Scene {
 
     let head;
     let face;
-    //let headColor = colorSetting.head;
 
     var group = new THREE.Group();
-
-    console.log(colorSetting)
     const headModel = new THREE.GLTFLoader();
-    const headTexture = new THREE.TextureLoader();
-    headTexture.flipY = false;
 		headModel.load( "assets/head.glb", ( gltf ) => {
       console.log(headModel);
       head = gltf.scene;
       head.traverse((o) => {
             if (o.isMesh) {
                 o.material = new THREE.MeshBasicMaterial();
-                //o.material.color.set(headColor);
+                o.material.color.set(headColor);
             }
         });
         head.rotation.set(0,1.57,0);
         head.position.set(0,-10,0);
         group.add(head);
 			} );
+      
+      let faceLink;
+      if(faceColor =='#F0F5F6'){
+        faceLink = "assets/face1.png";
+      }else if(faceColor == '#747474'){
+        faceLink = "assets/face2.png";
+      }else if(faceColor == '#FFDBE3'){
+        faceLink = "assets/face3.png";
+      }else{
+        faceLink = "assets/face4.png";
+      };
+      console.log(faceLink)
 
       const faceModel = new THREE.GLTFLoader();
-      const faceTexture = new THREE.TextureLoader().load("../assets/face1.png");
+      const faceTexture = new THREE.TextureLoader().load(faceLink);
       faceTexture.flipY = false;
       //faceTexture.repeat.set(0.5,0.5);
       faceModel.load( "assets/face.glb", ( gltf ) => {
