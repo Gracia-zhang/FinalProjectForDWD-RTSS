@@ -12,6 +12,9 @@
 
 // express will run our server
 const express = require("express");
+
+const {MongoClient} =require("mongodb");
+
 const app = express();
 app.use(express.static("public"));
 
@@ -30,6 +33,7 @@ const io = require("socket.io")().listen(server);
 
 // an object where we will store innformation about active clients
 let peers = {};
+let colorSetting = {};
 
 function main() {
   setupSocketServer();
@@ -59,10 +63,17 @@ function setupSocketServer() {
       rotation: [0, 0, 0, 1], // stored as XYZW values of Quaternion
     };
 
+    colorSetting[socket.id]={
+      skin:'#F0F5F6',
+      cloth:"assets/clothY.png",
+      head:'#FFFFFF',
+    }
+
     // Make sure to send the client their ID and a list of ICE servers for WebRTC network traversal
     socket.emit(
       "introduction",
-      Object.keys(peers)
+      Object.keys(peers),
+      colorSetting
     );
 
     // also give the client all existing clients positions:
@@ -79,6 +90,12 @@ function setupSocketServer() {
       if (peers[socket.id]) {
         peers[socket.id].position = data[0];
         peers[socket.id].rotation = data[1];
+      }
+    });
+
+    socket.on("color",(data)=>{
+      if (colorSetting[socket.id]){
+        colorSetting[socket.id] = data;
       }
     });
 
@@ -111,3 +128,42 @@ function setupSocketServer() {
     });
   });
 }
+
+
+
+//only in node module,not other js file
+//var MongoClient = mongo.MongoClient;
+const url = "mongodb://localhost:27017/";
+
+
+function signup(){
+  var clientInfo = {};
+  var clientID = {};
+  var update = false;
+  clientID.id = document.getElementById('Id').value;
+  clientInfo.id = document.getElementById('Id').value;
+  clientInfo.password = document.getElementById('Password').value;
+  console.log(clientInfo);
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb");
+    //var myobj = { name: "Company Inc", address: "Highway 37" };
+    dbo.collection("customers").find({clientID}).toArray(function(err,result){
+      if (err) throw err;
+      console.log(result);
+      if(result){
+        update = false;
+      }else{
+        update = true;
+      }
+      db.close();
+    })
+    if(update){
+      dbo.collection("customers").insertOne(clientInfo, function(err, res) {
+        if (err) throw err;
+        console.log("1 document inserted");
+        db.close();
+      });
+    }
+  });
+};

@@ -1,5 +1,8 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+import {MongoClient} from'mongodb';
+//only in node module,not other js file
+//var MongoClient = mongo.MongoClient;
+const url = "mongodb://localhost:27017/";
+
 
 function signup(){
   var clientInfo = {};

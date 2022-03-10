@@ -4,7 +4,7 @@ class MyControls {
     constructor(camera) {
         // set up my controls
         this.camera = camera;
-        this.camera.position.set(-17,10,0);
+        this.camera.position.set(-20,10,0);
         this.lat = 0;
         this.phi = 0;
         this.theta = 0;
@@ -27,6 +27,11 @@ class MyControls {
         //console.log('controls updating okay!');
         // console.log('KEYS: ',this.keys);
         
+
+        if (this.keys["q"]) {
+            this.camera.position.x -= 0.1;
+            
+        }
 
         if (this.keys["w"]) {
             if(this.camera.target.y < 11){

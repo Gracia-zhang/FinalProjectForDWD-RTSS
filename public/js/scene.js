@@ -65,7 +65,7 @@ class Scene {
     this.pointer = new THREE.Vector2();
     document.addEventListener
 
-    this.addModel();
+    // this.addModel();
 
 
     // Start the loop
@@ -82,48 +82,58 @@ class Scene {
   }
   //////////////////////////////////////////////////////////////////////
   //model
-  addModel(){
+  addModel(colorSetting){
+    let clothColor;
+    if(colorSetting.cloth = 'assets/clothY.png'){
+      clothColor = '#FFE043'
+    }else{
+      clothColor = '#85AAE7'
+    }
     const clothModel = new THREE.GLTFLoader();
-    const clothTexture = new THREE.TextureLoader().load("../assets/cloth1.png");
-    clothTexture.flipY = false;
+    // const clothTexture = new THREE.TextureLoader().load("../assets/cloth1.png");
+    //clothTexture.flipY = false;
 		clothModel.load( "assets/cloth.glb", ( gltf ) => {
       //console.log(clothModel);
       var cloth = gltf.scene;
         cloth.traverse((o) => {
             if (o.isMesh) {
-                o.material = new THREE.MeshBasicMaterial({map:clothTexture});
+                o.material = new THREE.MeshBasicMaterial();
+                o.material.color.set(clothColor)
             }
         });
 			this.scene.add(cloth);
 			} );
 
     const skinModel = new THREE.GLTFLoader();
-    const skinTexture = new THREE.TextureLoader().load("../assets/skin1.png");
-    skinTexture.flipY = false;
+    // const skinTexture = new THREE.TextureLoader().load("../assets/skin1.png");
+    // skinTexture.flipY = false;
 		skinModel.load( "assets/skin.glb", ( gltf ) => {
       //console.log(skinModel);
       var skin = gltf.scene;
         skin.traverse((o) => {
             if (o.isMesh) {
-                o.material = new THREE.MeshBasicMaterial({map:skinTexture});
+                o.material = new THREE.MeshBasicMaterial(
+                  // {map:skinTexture}
+                  );
+                o.material.color.set(colorSetting.skin)
             }
         });
 			this.scene.add(skin);
 			} );
 
-      const bgModel = new THREE.GLTFLoader();
-      const bgTexture = new THREE.TextureLoader().load("../assets/skin4.png");
-      bgTexture.flipY = false;
-      bgModel.load( "assets/background.glb", ( gltf ) => {
-        console.log(bgModel);
-        var bg = gltf.scene;
-        bg.traverse((o) => {
-              if (o.isMesh) {
-                  o.material = new THREE.MeshBasicMaterial({side: THREE.FrontSide, map:bgTexture});
-              }
-          });
-        this.scene.add( bg );
-        } );
+      // const bgModel = new THREE.GLTFLoader();
+      // const bgTexture = new THREE.TextureLoader().load("../assets/skin4.png");
+      // bgTexture.flipY = false;
+      // bgModel.load( "assets/background.glb", ( gltf ) => {
+      //   console.log(bgModel);
+      //   var bg = gltf.scene;
+      //   bg.traverse((o) => {
+      //         if (o.isMesh) {
+      //             o.material = new THREE.MeshBasicMaterial({side: THREE.FrontSide, map:bgTexture});
+      //         }
+      //     });
+      //   this.scene.add( bg );
+      //   } );
 
       const tableModel = new THREE.GLTFLoader();
       const tableTexture = new THREE.TextureLoader();
@@ -145,20 +155,60 @@ class Scene {
   // Clients 👫
 
   // add a client meshes, a video element and  canvas for three.js video texture
-  addClient(id) {//put models inside
-    let videoMaterial = makeVideoMaterial(id);//video material
-    let otherMat = new THREE.MeshNormalMaterial();
+  addClient(id,colorSetting) {//put models inside
+    // let videoMaterial = makeVideoMaterial(id);//video material
+    // let otherMat = new THREE.MeshNormalMaterial();
 
-    let head1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), [otherMat,otherMat,otherMat,otherMat,otherMat,videoMaterial]);
+    // let head1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), [otherMat,otherMat,otherMat,otherMat,otherMat,videoMaterial]);
 
-    // set position of head before adding to parent object
-    head1.position.set(0, 0, 0);
+    // // set position of head before adding to parent object
+    // head1.position.set(0, 0, 0);
+
+    let head;
+    let face;
+    //let headColor = colorSetting.head;
+
+    var group = new THREE.Group();
+
+    console.log(colorSetting)
+    const headModel = new THREE.GLTFLoader();
+    const headTexture = new THREE.TextureLoader();
+    headTexture.flipY = false;
+		headModel.load( "assets/head.glb", ( gltf ) => {
+      console.log(headModel);
+      head = gltf.scene;
+      head.traverse((o) => {
+            if (o.isMesh) {
+                o.material = new THREE.MeshBasicMaterial();
+               // o.material.color.set(headColor);
+            }
+        });
+        head.rotation.set(0,1.57,0);
+        head.position.set(0,-10,0);
+        group.add(head);
+			} );
+
+      const faceModel = new THREE.GLTFLoader();
+      const faceTexture = new THREE.TextureLoader().load("../assets/face1.png");
+      faceTexture.flipY = false;
+      //faceTexture.repeat.set(0.5,0.5);
+      faceModel.load( "assets/face.glb", ( gltf ) => {
+        console.log(faceModel);
+        face = gltf.scene;
+        face.traverse((o) => {
+              if (o.isMesh) {
+                  o.material = new THREE.MeshBasicMaterial({side: THREE.FrontSide, map:faceTexture});
+              }
+          });          
+          face.rotation.set(0,1.57,0);
+          face.position.set(0,-10,0);
+          group.add(face);
+        } );
 
     // https://threejs.org/docs/index.html#api/en/objects/Group
-    var group = new THREE.Group();
-    group.add(head);
-
+  
     // add group to scene
+
     this.scene.add(group);
 
     peers[id].group = group;
@@ -227,7 +277,7 @@ class Scene {
     // TODO: use quaternion or are euler angles fine here?
     return [
       [
-        this.camera.position.x,
+        this.camera.position.x+20,
         this.camera.position.y,
         this.camera.position.z,
       ],
@@ -290,7 +340,6 @@ class Scene {
   onWindowResize(e) {
     this.width = window.innerWidth*0.7;
     this.height = Math.floor(window.innerHeight * 0.7);
-    console.log(window.innerWidth,window.innerHeight);
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(this.width, this.height);

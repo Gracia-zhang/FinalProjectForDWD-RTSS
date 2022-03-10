@@ -14,7 +14,7 @@ let mySocket;
 
 // array of connected clients
 let peers = {};
-
+let colorSetting = {};
 // Variable to store our three.js scene:
 let myScene;
 
@@ -36,6 +36,8 @@ let mediaConstraints = {
   },
 };
 
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // Start-Up Sequence:
 ////////////////////////////////////////////////////////////////////////////////
@@ -54,14 +56,21 @@ window.onload = async () => {
   // finally create the threejs scene
   console.log("Creating three.js scene...");
   myScene = new Scene();
-  
+
+  mySocket.emit("color",
+    {
+      skin: localStorage.getItem("sBackground"),
+      cloth: localStorage.getItem("c"),
+      head: localStorage.getItem("hBackground"),
+  }
+  );
 
   // start sending position data to the server
   setInterval(function () {
+  
     mySocket.emit("move", myScene.getPlayerPosition());
   }, 200);
-  
-  useData();
+
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -96,12 +105,15 @@ function initSocketConnection() {
   });
 
   //On connection server sends the client his ID and a list of all keys
-  mySocket.on("introduction", (otherClientIds) => {
-
+  mySocket.on("introduction", (otherClientIds,color) => {
+    console.log(otherClientIds);
+    console.log(color);
     // for each existing user, add them as a client and add tracks to their peer connection
     for (let i = 0; i < otherClientIds.length; i++) {
       if (otherClientIds[i] != mySocket.id) {
         let theirId = otherClientIds[i];
+        let theirColor = color[theirId];
+        console.log(theirColor);
 
         console.log("Adding client with id " + theirId);
         peers[theirId] = {};
@@ -111,7 +123,8 @@ function initSocketConnection() {
 
         createClientMediaElements(theirId);
 
-        myScene.addClient(theirId);
+        myScene.addModel(theirColor);
+        myScene.addClient(theirId,theirColor);
 
       }
     }
@@ -265,7 +278,7 @@ function createClientMediaElements(_id) {
   const videoElement = document.createElement("video");
   videoElement.id = _id + "_video";
   videoElement.autoplay = true;
-  // videoElement.style = "visibility: hidden;";
+  videoElement.style = "visibility: hidden;";
 
   document.body.appendChild(videoElement);
 
@@ -301,9 +314,4 @@ function removeClientVideoElementAndCanvas(_id) {
   if (videoEl != null) {
     videoEl.remove();
   }
-}
-
-function getAz(){
-  azzz = myScene.getAzz();
-  console.log(azzz);
 }
